@@ -1,0 +1,15 @@
+TODO:
+ * Frontend UI:
+   - Add a Input field to add new tasks
+   - Add a button to add new tasks
+   - Segment the todo list into 3 sections
+     - Pending
+     - Completed
+   - Hovering over the task item should display the options
+     to delete, mark as completed etc...
+   - Can't add same item twice (So a set should be used)
+
+ * Backend API:
+   - Folder structure up to the backend developer
+   - Add a new task
+   - Mark a task as completed
