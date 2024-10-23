@@ -45,6 +45,13 @@ const TasksListView = () => {
         <hr className="border-1 flex-grow border-gray-300 mx-4" />
       </div>
 
+      {
+        pendingTasks.length === 0 && (
+          <div className="flex items-center justify-center w-full">
+            <h1 className="text-xl text-center text-gray-400 m-4 whitespace-nowrap">No Pending Tasks</h1>
+          </div>)
+      }
+
       {pendingTasks.map((task) => {
         return (<TaskItem key={task._id} id={task._id} status={task.status} taskName={task.name} onTaskStatusChange={() => onTaskStatusChange(task._id)} />)
       })}
@@ -54,6 +61,13 @@ const TasksListView = () => {
         <h1 className="text-xl text-center text-green-500 mx-4 underline whitespace-nowrap">Completed Tasks</h1>
         <hr className="border-1 flex-grow border-gray-300 mx-4" />
       </div>
+
+      {
+        completedTasks.length === 0 && (
+          <div className="flex items-center justify-center w-full">
+            <h1 className="text-xl text-center text-gray-400 mx-4 mt-4 whitespace-nowrap">No Completed Tasks</h1>
+          </div>)
+      }
 
       {completedTasks.map((task) => {
         return (<TaskItem key={task._id} id={task._id} status={task.status} taskName={task.name} onTaskStatusChange={() => onTaskStatusChange(task._id)} />)
