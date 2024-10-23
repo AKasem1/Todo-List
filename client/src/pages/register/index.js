@@ -22,10 +22,7 @@ const Index = () => {
                 <InputField type='text' placeholder='Enter your Username'/>
                 <InputField type='email' placeholder='Enter your Email'/>
                 <InputField type='password' placeholder='Enter your Password'/>
-
-                <input type='checkbox' name='remember' className='mr-2 size-4'/>
-                <label className='text-slate-600'>Remember me</label>
-
+                
                 <button type='submit' className='w-full py-2 bg-green-500 text-white hover:bg-green-400 active:bg-green-600' onClick={(e) => {onRegisterHandler(e)}}>
                     Register
                 </button>
