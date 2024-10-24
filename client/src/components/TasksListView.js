@@ -1,7 +1,10 @@
 import React, { useEffect, useState } from 'react'
 import TaskItem from './TaskItem'
+import { useSelector } from 'react-redux'
 
 const TasksListView = () => {
+  let tasksSelector = useSelector(state => state.tasks)
+
   const [allTasks, setAllTasks] = useState([
     {
       _id: 1,
@@ -38,7 +41,6 @@ const TasksListView = () => {
 
   return (
     <div className='bg-white border rounded-lg shadow-xl mx-auto w-[80%] py-6'>
-
       <div className="flex items-center justify-center w-full">
         <hr className="border-1 flex-grow border-gray-300 mx-4" />
         <h1 className="text-xl text-center text-red-500 mx-4 underline whitespace-nowrap">Pending Tasks</h1>

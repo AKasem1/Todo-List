@@ -2,6 +2,8 @@ import IconButton from "@/components/UI/IconButton";
 import TasksListView from "@/components/TasksListView";
 import { useState } from "react";
 import AddTaskModal from "@/components/AddTaskModal";
+import { Provider } from "react-redux";
+import store from "../store/index"
 
 
 export default function Home() {
@@ -12,13 +14,15 @@ export default function Home() {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-tr from-sky-800 to-sky-200 px-24 py-16">
-      <h1 className="uppercase text-3xl text-center font-thin mb-6">Todo list</h1>
-      <div>
-        <IconButton onClick={onAddTaskHandler}/>
-        <TasksListView/>
-        {isModalOpen && <AddTaskModal onAddTaskHandler={onAddTaskHandler}/>}
+    <Provider store={store}>
+      <div className="min-h-screen bg-gradient-to-tr from-sky-800 to-sky-200 px-24 py-16">
+        <h1 className="uppercase text-3xl text-center font-thin mb-6">Todo list</h1>
+        <div>
+          <IconButton onClick={onAddTaskHandler}/>
+          <TasksListView/>
+          {isModalOpen && <AddTaskModal onAddTaskHandler={onAddTaskHandler}/>}
+        </div>
       </div>
-    </div>
+    </Provider>
   );
 }
