@@ -12,10 +12,10 @@ const Index = () => {
     }
 
     return (
-        <div className='min-h-screen flex justify-center items-center bg-gradient-to-tr from-sky-500 to-white '>
+        <div className='min-h-screen flex justify-center items-center bg-[#3C424A]'>
             <form className='bg-white w-1/3 m-6 rounded-lg px-6 py-4 space-y-5'>
                 <h1 className='text-2xl font-semibold'>
-                    <span className='underline decoration-2 decoration-green-500'>Reg</span>
+                    <span className='underline decoration-2 decoration-rose-600'>Reg</span>
                     isteration
                 </h1>
 
@@ -23,7 +23,7 @@ const Index = () => {
                 <InputField type='email' placeholder='Enter your Email'/>
                 <InputField type='password' placeholder='Enter your Password'/>
                 
-                <button type='submit' className='w-full py-2 bg-green-500 text-white hover:bg-green-400 active:bg-green-600' onClick={(e) => {onRegisterHandler(e)}}>
+                <button type='submit' className='w-full py-2 bg-rose-600 text-white hover:bg-rose-400 active:bg-rose-600' onClick={(e) => {onRegisterHandler(e)}}>
                     Register
                 </button>
                 

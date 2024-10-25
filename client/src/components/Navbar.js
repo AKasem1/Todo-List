@@ -1,3 +1,4 @@
+import Link from 'next/link'
 import React from 'react'
 
 const Navbar = () => {
@@ -11,9 +12,9 @@ const Navbar = () => {
             <button className='p-3 border-b-4 border-b-transparent hover:border-b-rose-600 transition-colors'>
                 Tasks
             </button>
-            <button className='px-3 py-1 bg-rose-600 rounded-lg transition-colors'>
+            <Link href={'/login'} className='px-3 py-1 bg-rose-600 rounded-lg transition-colors'>
                 Login
-            </button>
+            </Link>
             
         </div>
     </div>

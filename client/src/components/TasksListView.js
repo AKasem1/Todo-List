@@ -15,12 +15,6 @@ const TasksListView = () => {
     setCompletedTasks(allTasks.filter(task => task.status === "complete"));
   }, [allTasks]);
 
-/*************  ✨ Codeium Command ⭐  *************/
-  /**
-   * Toggles the status of a task
-   * @param {number} taskId - id of the task to toggle
-   */
-/******  650cd9b9-4be3-4e2d-822e-de75c14a3b16  *******/
   const onTaskStatusChange = (taskId) => {
     allTasksDispatch(taskActions.toggleTask(taskId));
   }

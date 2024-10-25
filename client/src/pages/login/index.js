@@ -12,9 +12,9 @@ const Index = () => {
     }
 
     return (
-        <div className='min-h-screen flex justify-center items-center bg-gradient-to-bl from-sky-500 to-blue-300 '>
+        <div className='min-h-screen flex justify-center items-center bg-[#3C424A] '>
             <form className='bg-white w-1/3 m-6 rounded-b-lg'>
-                <h1 className='px-6 py-4 text-2xl text-center font-semibold w-full  bg-green-400 text-white'>
+                <h1 className='px-6 py-4 text-2xl text-center font-semibold w-full  bg-rose-600 text-white'>
                     <span className='underline decoration-2 decoration-black'>Lo</span>
                     gin
                 </h1>
@@ -24,7 +24,7 @@ const Index = () => {
                     <InputField type='password' placeholder='Enter your Password' />
                     <input type='checkbox' name='remember' className='mr-2 size-4' />
                     <label className='text-slate-600'>Remember me</label>
-                    <button type='submit' className='w-full py-2 bg-green-500 text-white hover:bg-green-400 active:bg-green-600' onClick={(e) => { onLoginHandler(e) }}>
+                    <button type='submit' className='w-full py-2 bg-rose-600 text-white hover:bg-rose-400 active:bg-rose-600' onClick={(e) => { onLoginHandler(e) }}>
                         Login
                     </button>
                     <p className='text-center'>Don't have an account? <Link href={'/register'} className='text-sky-500'>Register</Link></p>
