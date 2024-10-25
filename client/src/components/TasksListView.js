@@ -1,28 +1,12 @@
 import React, { useEffect, useState } from 'react'
 import TaskItem from './TaskItem'
 import { useSelector } from 'react-redux'
+import { useDispatch } from 'react-redux'
+import { taskActions } from '@/store/tasksSlice'
 
 const TasksListView = () => {
-  let tasksSelector = useSelector(state => state.tasks)
-
-  const [allTasks, setAllTasks] = useState([
-    {
-      _id: 1,
-      name: "Task 1",
-      status: "pending"
-    },
-    {
-      _id: 2,
-      name: "Task 2",
-      status: "complete"
-    },
-    {
-      _id: 3,
-      name: "Task 3",
-      status: "pending"
-    }
-  ]);
-
+  const allTasks = useSelector(state => state.tasks.tasks);
+  const allTasksDispatch = useDispatch();
   const [pendingTasks, setPendingTasks] = useState([]);
   const [completedTasks, setCompletedTasks] = useState([]);
 
@@ -31,49 +15,57 @@ const TasksListView = () => {
     setCompletedTasks(allTasks.filter(task => task.status === "complete"));
   }, [allTasks]);
 
+/*************  ✨ Codeium Command ⭐  *************/
+  /**
+   * Toggles the status of a task
+   * @param {number} taskId - id of the task to toggle
+   */
+/******  650cd9b9-4be3-4e2d-822e-de75c14a3b16  *******/
   const onTaskStatusChange = (taskId) => {
-    setAllTasks(prevTasks =>
-      prevTasks.map(task =>
-        task._id === taskId ? { ...task, status: task.status === "pending" ? "complete" : "pending" } : task
-      )
-    );
+    allTasksDispatch(taskActions.toggleTask(taskId));
   }
 
   return (
-    <div className='bg-white border rounded-lg shadow-xl mx-auto w-[80%] py-6'>
-      <div className="flex items-center justify-center w-full">
-        <hr className="border-1 flex-grow border-gray-300 mx-4" />
-        <h1 className="text-xl text-center text-red-500 mx-4 underline whitespace-nowrap">Pending Tasks</h1>
-        <hr className="border-1 flex-grow border-gray-300 mx-4" />
+    <div className='text-slate-400 mx-auto w-1/2 mt-16'>
+
+      {/* Date Header */}
+      <div className='flex justify-center text-4xl text-center space-x-6 my-16'>
+        <button>{"<"}</button>
+        <div>
+          <h1 className='text-white font-semibold'>
+            {new Intl.DateTimeFormat('en-US', { weekday: 'long' }).format(new Date())}
+          </h1>
+          <p className='text-[20px]'>{new Intl.DateTimeFormat('en-US', {
+            month: 'short',
+            day: 'numeric',
+            year: 'numeric'
+          }).format(new Date())}</p>
+        </div>
+        <button>{">"}</button>
       </div>
 
+      {completedTasks.length > 0 && <p className='bg-black px-4 py-2 w-fit rounded-xl text-white'>Completed Tasks:
+        <span className='bg-white text-black rounded-full ml-4 px-1'>{completedTasks.length}</span>
+      </p>}
+
+      {/* Completed Tasks */}
       {
-        pendingTasks.length === 0 && (
-          <div className="flex items-center justify-center w-full">
-            <h1 className="text-xl text-center text-gray-400 m-4 whitespace-nowrap">No Pending Tasks</h1>
-          </div>)
+        completedTasks.map(task => (
+          <TaskItem key={task._id} taskId={task._id} status={task.status} taskName={task.name} onTaskStatusChange={onTaskStatusChange} />
+        ))
       }
 
-      {pendingTasks.map((task) => {
-        return (<TaskItem key={task._id} id={task._id} status={task.status} taskName={task.name} onTaskStatusChange={() => onTaskStatusChange(task._id)} />)
-      })}
+      
+      {pendingTasks.length > 0 && <p className='bg-black px-4 py-2 w-fit rounded-xl text-white'>Pending Tasks:
+        <span className='bg-white text-black rounded-full ml-4 px-1'>{pendingTasks.length}</span>
+      </p>}
 
-      <div className="flex items-center justify-center w-full">
-        <hr className="border-1 flex-grow border-gray-300 mx-4" />
-        <h1 className="text-xl text-center text-green-500 mx-4 underline whitespace-nowrap">Completed Tasks</h1>
-        <hr className="border-1 flex-grow border-gray-300 mx-4" />
-      </div>
-
+      {/* Pending Tasks */}
       {
-        completedTasks.length === 0 && (
-          <div className="flex items-center justify-center w-full">
-            <h1 className="text-xl text-center text-gray-400 mx-4 mt-4 whitespace-nowrap">No Completed Tasks</h1>
-          </div>)
+        pendingTasks.map(task => (
+          <TaskItem key={task._id} taskId={task._id} status={task.status} taskName={task.name} onTaskStatusChange={onTaskStatusChange} />
+        ))
       }
-
-      {completedTasks.map((task) => {
-        return (<TaskItem key={task._id} id={task._id} status={task.status} taskName={task.name} onTaskStatusChange={() => onTaskStatusChange(task._id)} />)
-      })}
     </div>
   )
 }
